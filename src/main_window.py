@@ -1,6 +1,7 @@
 """Main window"""
 import os
 import subprocess
+import time
 
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow
@@ -29,6 +30,8 @@ class MainWindow(QMainWindow):
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.check_yadisk_status)
         self.start_timer()
+        # Start/stop
+        self.btn_start_stop.clicked.connect(self.start_stop_yadisk)
         # File dialog
         self.btn_path.clicked.connect(self.open_file_dialog)
         # Showing main window
@@ -40,24 +43,25 @@ class MainWindow(QMainWindow):
         try:
             res = subprocess.run(['yandex-disk', 'status'], capture_output=True)
             self.label_yadisk_status_full.setText(res.stdout.decode())
-            # TODO:
-            if res:
-                self.yadisk_status = True
-            else:
+            if res.stdout.decode().startswith('Error: daemon not started'):
                 self.yadisk_status = False
+            else:
+                self.yadisk_status = True
         except Exception as e:
             self.label_yadisk_status_full.setText(f'{type(e).__name__}: {e}')
             self.yadisk_status = False
         if self.yadisk_status:
             self.label_yadisk_status.setText('Daemon running')
+            self.btn_start_stop.setText('Stop')
         else:
             self.label_yadisk_status.setText('Daemon stopped')
+            self.btn_start_stop.setText('Start')
             
             
     def start_timer(self):
         """Start the updating timer"""
         self.check_yadisk_status()
-        self.timer.start(1000)  # 1 
+        self.timer.start(1000)  # 1 second
         
         
     def stop_timer(self):
@@ -72,9 +76,11 @@ class MainWindow(QMainWindow):
             self.label_yadisk_status.repaint()
             try:
                 res = subprocess.run(['yandex-disk', 'stop'], capture_output=True)
-                if res.stdout.decode() == 'Daemon stopped':
+                if res.stdout.decode().startswith('Daemon stopped.'):
                     self.yadisk_status = False
                     self.stop_timer()
+                    time.sleep(1)
+                    self.check_yadisk_status()
                 else:
                     raise RuntimeError(f'Could not stop the daemon. Std error: {res.stderr.decode()}')
             except Exception as e:
@@ -86,7 +92,7 @@ class MainWindow(QMainWindow):
             self.label_yadisk_status.repaint()
             try:
                 res = subprocess.run(['yandex-disk', 'start'], capture_output=True)
-                if res.stdout.decode() == 'Daemon started':
+                if res.stdout.decode().startswith('Starting daemon process...Done'):
                     self.yadisk_status = True
                     self.start_timer()
                 else:
