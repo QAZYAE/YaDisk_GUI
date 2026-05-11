@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>YaDiskGUI</class>
+ <widget class="QMainWindow" name="YaDiskGUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>632</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QLabel" name="label_yadisk_status">
+      <property name="text">
+       <string>Sync progress: 4.78 KB/ 6.93 KB (68 %)
+Synchronization core status: busy
+Path to Yandex.Disk directory: '/home/qazyae/Yandex.Disk'
+        Total: 1.04 TB
+        Used: 159.11 GB
+        Available: 904.89 GB
+        Max file size: 50 GB
+        Trash size: 0 B
+
+Last synchronized items:
+        file: 'Python projects/YaDisk_GUI/src/main_window.py'
+        file: 'Python projects/YaDisk_GUI/src/__pycache__/main_window.cpython-312.pyc'
+        file: 'Python projects/YaDisk_GUI/src/test.py'
+        file: 'Python projects/YaDisk_GUI/src/YaDisk_backend.py'
+        file: 'Python projects/YaDisk_GUI/src/ui/MainWindow.ui'
+        file: 'Python projects/MemriBoard/RRAM_VISA_Drivers/.git/gk/config'
+        directory: 'Python projects/YaDisk_GUI/src/__pycache__'
+        file: 'Python projects/YaDisk_GUI/.venv/lib/python3.12/site-packages/PyQt5/Qt5/qml/QtPositioning/plugins.qmltypes'
+        file: 'Python projects/YaDisk_GUI/.venv/lib/python3.12/site-packages/PyQt5/bindings/QtGui/qcolor.sip'
+        file: 'Python projects/YaDisk_GUI/.venv/lib/python3.12/site-packages/PyQt5/QtTest.pyi'</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_check_status">
+      <property name="text">
+       <string>Check status</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_path">
+      <property name="text">
+       <string>Path</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
