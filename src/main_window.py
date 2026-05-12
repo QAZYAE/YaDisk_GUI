@@ -27,7 +27,8 @@ class MainWindow(QMainWindow):
             self.closeEvent(None)
         # YaDisk config
         try:
-            self.config = ConfigParser(path_to_config=os.path.join(os.getcwd(), 'test.txt'))
+            # TODO: add ability to change dir
+            self.config = ConfigParser(path_to_config=os.path.join(os.path.expanduser("~"), '.config/yandex-disk/config.cfg'))
         except Exception as e:
             warn(self, f'Exception occurred while reading configuration file:\n{type(e).__name__}: {e}')
             self.closeEvent(None)
