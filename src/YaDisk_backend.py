@@ -15,8 +15,18 @@ class Disk:
     def listdir(self, path: str) -> list[str]:
         """List directory"""
         try:
-            return [(file.name, file.modified, file.type) for file in self.client.listdir(path)]
+            with self.client:
+                return [(file.name, file.modified, file.type) for file in self.client.listdir(path)]
         except yadisk.exceptions.PathNotFoundError as e:
             return f'Path not found!\n{e}'
+        except Exception as e:
+            return f'ERROR: {type(e).__name__}: {e}'
+        
+        
+    def check_path(self, path: str) -> bool | str:
+        """Check if the path exists on the disk"""
+        try:
+            with self.client:
+                return self.client.exists(path)
         except Exception as e:
             return f'ERROR: {type(e).__name__}: {e}'

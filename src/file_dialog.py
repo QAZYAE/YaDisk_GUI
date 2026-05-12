@@ -90,5 +90,7 @@ class FileDialog(QDialog):
             self.on_tree_click(self.tree.currentIndex())
             return
         path = self._get_full_path(item)
-        self.parent.chosen_file = path
+        self.parent.path = path
+        self.parent.bad_path = False
+        self.parent.update_path_display()
         self.close()
