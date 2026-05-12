@@ -15,23 +15,34 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QLineEdit" name="line_edit_path">
      <property name="text">
-      <string>/your/path</string>
+      <string>Choose a path</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QLabel" name="label_bad_path">
+     <property name="text">
+      <string>Bad path!</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="btn_browse">
      <property name="text">
       <string>Browse</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="btn_delete">
      <property name="text">
-      <string>Delete</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../icons/close.svg</normaloff>../icons/close.svg</iconset>
      </property>
     </widget>
    </item>

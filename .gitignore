@@ -221,3 +221,6 @@ __marimo__/
 
 # Other
 .token
+src/test*
+test*
+YaDisk_GUI.sh
